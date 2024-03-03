@@ -9,6 +9,7 @@ import { PagedList } from "src/core/entities/paged-list";
 @Injectable()
 export class PrismaBooksRepository implements IBooksRepository {
     constructor(private readonly prisma: PrismaService) {}
+    
     async findByBarCode(barCode: string): Promise<Book | null> {
         const book = await this.prisma.book.findUnique({
             where: { bar_code: barCode }
@@ -29,6 +30,7 @@ export class PrismaBooksRepository implements IBooksRepository {
     async findManyRecent(take: number, skip: number): Promise<PagedList<Book>> {
         const count = await this.prisma.book.count();
         const books = await this.prisma.book.findMany({
+            where: { },
             orderBy: { createdAt: 'desc'},
             take: take,
             skip: (skip - 1) * take  
