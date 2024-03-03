@@ -11,6 +11,10 @@ export class UniqueId {
         return this.value
     }
 
+    public toValue() {
+        return this.value;
+    }
+
     public equals(id: UniqueId): boolean {
         return id.toString() == this.value
     }

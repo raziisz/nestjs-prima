@@ -19,5 +19,16 @@ export class Book extends Entity<BookProps> {
         return book;
     }
 
+    get title() {
+        return this.props.title;
+    }
+    get description() {
+        return this.props.description;
+    }
+    get bar_code() {
+        return this.props.bar_code;
+    }
+
+
     
 }
