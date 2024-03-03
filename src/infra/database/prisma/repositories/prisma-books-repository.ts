@@ -24,13 +24,17 @@ export class PrismaBooksRepository implements IBooksRepository {
         const data = PrismaBookMapper.toPrisma(book);
         await this.prisma.book.create({ data });
     }
-    save(data: Book): Promise<void> {
-        throw new Error("Method not implemented.");
+    async save(data: Book): Promise<void> {
+        const dataToPrisma = PrismaBookMapper.toPrisma(data);
+
+        await this.prisma.book.update({
+            where: { id: dataToPrisma.id },
+            data: dataToPrisma
+        })
     }
     async findManyRecent(take: number, skip: number): Promise<PagedList<Book>> {
         const count = await this.prisma.book.count();
         const books = await this.prisma.book.findMany({
-            where: { },
             orderBy: { createdAt: 'desc'},
             take: take,
             skip: (skip - 1) * take  

@@ -29,6 +29,17 @@ export class Book extends Entity<BookProps> {
         return this.props.bar_code;
     }
 
+    public update(title?: string, description?: string): void {
+        
+        if(!!title && title.trim() != "" && title != this.props.title)
+            this.props.title = title
+
+        if(!!description && description.trim() != "" && description != this.props.description)
+        this.props.description = description
+
+        this.touch();
+    }
+
 
     
 }

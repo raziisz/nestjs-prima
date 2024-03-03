@@ -7,13 +7,16 @@ import { PrismaBooksRepository } from "src/infra/database/prisma/repositories/pr
 import { ReadBookUseCase } from "src/application/use-cases/read-book.use-case";
 import { ListBookController } from "./controllers/list-books.controller";
 import { ListBookUseCase } from "src/application/use-cases/list-book.use-case";
+import { UpdateBookUseCase } from "src/application/use-cases/update-book.use-case";
+import { UpdateBookController } from "./controllers/update-book.controller";
 
 @Module({
     imports: [DatabaseModule],
     controllers: [
         CreateBookController,
         FindByIdBookController,
-        ListBookController
+        ListBookController,
+        UpdateBookController
     ],
     providers:[
         {
@@ -32,6 +35,12 @@ import { ListBookUseCase } from "src/application/use-cases/list-book.use-case";
             provide: ListBookUseCase,
             useFactory: (repository: PrismaBooksRepository) =>
                 new ListBookUseCase(repository),
+            inject: [PrismaBooksRepository]
+        },
+        {
+            provide: UpdateBookUseCase,
+            useFactory: (repository: PrismaBooksRepository) =>
+                new UpdateBookUseCase(repository),
             inject: [PrismaBooksRepository]
         }
     ]
