@@ -32,8 +32,16 @@ export class PrismaBooksRepository implements IBooksRepository {
 
         return books.map(PrismaBookMapper.toDomain);
     }
-    findById(id: UniqueId): Promise<Book> {
-        throw new Error("Method not implemented.");
+    async findById(id: UniqueId): Promise<Book|null> {
+        const book = await this.prisma.book.findUnique({
+            where: {
+                id: id.toString()
+            }
+        })
+
+        if (!book) return null;
+
+        return PrismaBookMapper.toDomain(book);
     }
     delete(id: UniqueId): Promise<void> {
         throw new Error("Method not implemented.");
