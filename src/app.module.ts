@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { HttpModule } from './infra/http/http.module';
+import { HttpBooksModule } from './infra/http/books/http-books.module';
 
 @Module({
   imports: [
-    HttpModule
+    HttpBooksModule
   ],
   controllers: [],
   providers: [],
