@@ -8,8 +8,8 @@ import { PagedList } from "src/core/entities/paged-list";
 
 @Injectable()
 export class PrismaBooksRepository implements IBooksRepository {
-    constructor(private readonly prisma: PrismaService) {}
-    
+    constructor(private readonly prisma: PrismaService) { }
+
     async findByBarCode(barCode: string): Promise<Book | null> {
         const book = await this.prisma.book.findUnique({
             where: { bar_code: barCode }
@@ -35,9 +35,9 @@ export class PrismaBooksRepository implements IBooksRepository {
     async findManyRecent(take: number, skip: number): Promise<PagedList<Book>> {
         const count = await this.prisma.book.count();
         const books = await this.prisma.book.findMany({
-            orderBy: { createdAt: 'desc'},
+            orderBy: { createdAt: 'desc' },
             take: take,
-            skip: (skip - 1) * take  
+            skip: (skip - 1) * take
         });
 
         const booksReturn = books.map(PrismaBookMapper.toDomain);
@@ -45,7 +45,7 @@ export class PrismaBooksRepository implements IBooksRepository {
 
         return result;
     }
-    async findById(id: UniqueId): Promise<Book|null> {
+    async findById(id: UniqueId): Promise<Book | null> {
         const book = await this.prisma.book.findUnique({
             where: {
                 id: id.toString()
@@ -56,7 +56,7 @@ export class PrismaBooksRepository implements IBooksRepository {
 
         return PrismaBookMapper.toDomain(book);
     }
-    delete(id: UniqueId): Promise<void> {
-        throw new Error("Method not implemented.");
-    }  
+    async delete(id: UniqueId): Promise<void> {
+        await this.prisma.book.delete({ where: { id: id.toString() } });
+    }
 }

@@ -1,6 +1,6 @@
 import { Body, Controller, HttpCode, HttpStatus, InternalServerErrorException, NotFoundException, Param, Patch } from "@nestjs/common";
 import { ResourceNotFoundError } from "src/application/exceptions/resource-not-found-error";
-import { UpdateBookRequest } from "src/application/models/book/updata-book-request";
+import { UpdateBookRequest } from "src/infra/http/books/dtos/updata-book.dto";
 import { UpdateBookUseCase } from "src/application/use-cases/update-book.use-case";
 import { UniqueId } from "src/core/entities/unique-id";
 

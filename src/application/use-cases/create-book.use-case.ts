@@ -1,8 +1,13 @@
 import { IBooksRepository } from "src/core/repositories/books-repository.contract";
-import { CreateBookRequest } from "../models/book/create-book-request";
 import { Book } from "src/core/entities/book";
 import { Either, failure, success } from "src/core/entities/either";
 import { ResourceExistsError } from "../exceptions/resource-exists-error";
+
+interface CreateBookRequest {
+    bar_code: string,
+    description: string,
+    title: string
+}
 
 type CreateBookResponse = Either<ResourceExistsError, { message: string }>
 

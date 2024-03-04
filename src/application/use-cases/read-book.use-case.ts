@@ -1,10 +1,10 @@
 import { UniqueId } from "src/core/entities/unique-id";
 import { IBooksRepository } from "src/core/repositories/books-repository.contract";
-import { BookDTO } from "../models/book/get-book-request";
 import { ResourceNotFoundError } from "../exceptions/resource-not-found-error";
 import { Either, failure, success } from "src/core/entities/either";
+import { BookResponse } from "../models/book-response";
 
-type ReadBookResponse = Either<ResourceNotFoundError, { book: BookDTO }>;
+type ReadBookResponse = Either<ResourceNotFoundError, { book: BookResponse }>;
 
 export class ReadBookUseCase {
     constructor(private repository: IBooksRepository) {}

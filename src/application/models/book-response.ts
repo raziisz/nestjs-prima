@@ -1,4 +1,4 @@
-export type BookDTO = {
+export interface BookResponse {
     id: string,
     title: string,
     description: string,

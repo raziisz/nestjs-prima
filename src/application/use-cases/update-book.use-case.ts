@@ -2,7 +2,7 @@ import { Either, failure, success } from "src/core/entities/either";
 import { ResourceNotFoundError } from "../exceptions/resource-not-found-error";
 import { IBooksRepository } from "src/core/repositories/books-repository.contract";
 import { UniqueId } from "src/core/entities/unique-id";
-import { UpdateBookRequest } from "../models/book/updata-book-request";
+import { UpdateBookRequest } from "../../infra/http/books/dtos/updata-book.dto";
 
 type UpdateBookResponse = Either<ResourceNotFoundError, { message: string }>
 export class UpdateBookUseCase {

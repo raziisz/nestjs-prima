@@ -1,9 +1,9 @@
 import { IBooksRepository } from "src/core/repositories/books-repository.contract";
-import { ListBookRequest } from "../models/book/list-book-request";
-import { BookDTO } from "../models/book/get-book-request";
+import { ListBookRequest } from "../../infra/http/books/dtos/list-book.dto";
 import { Either, success } from "src/core/entities/either";
+import { BookResponse } from "../models/book-response";
 
-type ListBookResponse = Either<null, { books: BookDTO[], pageNumber: number, pageSize: number, totalCount: number, totalPages: number }>;
+type ListBookResponse = Either<null, { books: BookResponse[], pageNumber: number, pageSize: number, totalCount: number, totalPages: number }>;
 
 export class ListBookUseCase {
     constructor(private readonly repository: IBooksRepository) { }

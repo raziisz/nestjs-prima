@@ -1,5 +1,5 @@
 import { Controller, Get, InternalServerErrorException, Query } from "@nestjs/common";
-import { ListBookRequest } from "src/application/models/book/list-book-request";
+import { ListBookRequest } from "src/infra/http/books/dtos/list-book.dto";
 import { DataResponse } from "src/application/models/data-response";
 import { ListBookUseCase } from "src/application/use-cases/list-book.use-case";
 
